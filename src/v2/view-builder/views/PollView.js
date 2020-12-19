@@ -47,10 +47,10 @@ const Body = BaseForm.extend(Object.assign(
       this.stopPolling();
     },
 
-    triggerAfterError (model, error) {
+    triggerAfterError () {
+      BaseForm.prototype.triggerAfterError.apply(this, arguments);
       this.stopPolling();
-      this.$el.find('.o-form-fieldset-container').empty();
-      this.options.appState.trigger('afterError', error);
+      this.model.trigger('clearFormFieldsetContent');
     },
   },
 
